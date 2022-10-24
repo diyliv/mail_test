@@ -1,0 +1,14 @@
+Postgres:
+ Host: "mail_postgres_db"
+ Port: 5432
+ Login: postgres
+ Password: postgres 
+ ConnMaxLifeTime: 3
+ MaxOpenConn: 10
+ MaxIdleConn: 10
+Email:
+ SenderPassword: "1234"
+HttpServer:
+ Port: ":8080"
+ ReadTimeout: 5
+ WriteTimeout: 5

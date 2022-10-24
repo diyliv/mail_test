@@ -1,0 +1,23 @@
+version: '3.7'
+services:
+ app:
+  build:
+   dockerfile: Dockerfile
+   context: .
+  restart: unless-stopped
+  ports:
+   - 8080:8080
+  container_name: mail_service
+ postgres:
+  image: postgres:latest 
+  container_name: mail_postgres_db
+  env_file:
+   .env
+  restart: unless-stopped
+  ports:
+   - 5432:5432 
+ migrate:
+  image: migrate/migrate
+  volumes:
+   - ./schema:/schema
+  command: ["-path", "/schema", "-database", "postgres://postgres:postgres@mail_postgres_db:5432/postgres?sslmode=disable", "up"] 
